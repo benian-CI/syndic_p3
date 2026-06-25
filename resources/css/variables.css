@@ -1,0 +1,146 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+    color-scheme: light;
+    --bg: #f8fafc;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --primary: #0d9488;
+    --primary-dark: #0f766e;
+    --panel: #ffffff;
+    --danger: #ef4444;
+
+    /* Sidebar */
+    --sidebar-bg: #0b1220;
+    --sidebar-text: #eef4ff;
+    --sidebar-link: #cbd5e1;
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+
+    /* Statuts */
+    --error-bg: #fef2f2;
+    --error-text: #991b1b;
+    --success-bg: #f0fdf4;
+    --success-text: #166534;
+
+    /* Typographie */
+    --text-xs: 11px;
+    --text-sm: 13px;
+    --text-base: 15px;
+    --text-lg: 17px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 30px;
+    --weight-normal: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+
+    /* Espacement */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+
+    /* Rayons */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* Ombres Premium */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Couleurs accent icônes */
+    --color-red: #ef4444;
+    --color-green: #10b981;
+    --color-blue: #3b82f6;
+    --color-amber: #f59e0b;
+    --color-purple: #8b5cf6;
+    --icon-red-bg: rgba(239, 68, 68, 0.1);
+    --icon-green-bg: rgba(16, 185, 129, 0.1);
+    --icon-blue-bg: rgba(59, 130, 246, 0.1);
+    --icon-amber-bg: rgba(245, 158, 11, 0.1);
+    --icon-purple-bg: rgba(139, 92, 246, 0.1);
+}
+
+html.dark {
+    color-scheme: dark;
+    --bg: #090e17;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --line: rgba(255, 255, 255, 0.08);
+    --primary: #2dd4bf;
+    --primary-dark: #14b8a6;
+    --panel: rgba(30, 41, 59, 0.7);
+    --danger: #f87171;
+
+    --sidebar-bg: #090e17;
+    --sidebar-text: #f8fafc;
+    --sidebar-link: #94a3b8;
+    --sidebar-hover: rgba(255, 255, 255, 0.08);
+
+    --error-bg: rgba(153, 27, 27, 0.2);
+    --error-text: #fca5a5;
+    --success-bg: rgba(22, 101, 52, 0.2);
+    --success-text: #86efac;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.8);
+
+    --icon-red-bg: rgba(248, 113, 113, 0.15);
+    --icon-green-bg: rgba(52, 211, 153, 0.15);
+    --icon-blue-bg: rgba(96, 165, 250, 0.15);
+    --icon-amber-bg: rgba(251, 191, 36, 0.15);
+    --icon-purple-bg: rgba(167, 139, 250, 0.15);
+}
+
+body {
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Glassmorphism on panels for dark mode */
+html.dark .panel, html.dark .card, html.dark .filter-bar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Input fields in dark mode */
+html.dark input, html.dark select, html.dark textarea {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+}
+
+html.dark input:focus, html.dark select:focus, html.dark textarea:focus {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+html.dark th {
+    background: rgba(255, 255, 255, 0.03);
+}
+html.dark tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+html.dark .badge-neutral {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+

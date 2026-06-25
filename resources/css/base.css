@@ -1,0 +1,44 @@
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-base);
+    font-weight: var(--weight-normal);
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   TYPOGRAPHIE
+   ============================================================ */
+h1 { font-size: var(--text-3xl); font-weight: var(--weight-extrabold); line-height: 1.2; margin: 0; letter-spacing: -0.4px; }
+h2 { font-size: var(--text-xl); font-weight: var(--weight-bold); line-height: 1.3; margin: 0 0 var(--space-4); letter-spacing: -0.2px; }
+h3 { font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: 1.4; margin: 0 0 var(--space-3); }
+
+p { margin: 0 0 var(--space-4); }
+
+.muted { color: var(--muted); font-size: var(--text-sm); }
+.label-text { color: #344054; font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+.text-sm { font-size: var(--text-sm); }
+.text-xs { font-size: var(--text-xs); }
+
+/* ============================================================
+   GRILLES
+   ============================================================ */
+.grid  { display: grid; gap: var(--space-4); }
+.stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.two   { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-5); }
+.full  { grid-column: 1 / -1; }
+
+body {
+    transition: background-color var(--transition-base), color var(--transition-base);
+}

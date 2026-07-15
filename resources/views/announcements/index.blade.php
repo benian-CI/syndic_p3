@@ -34,7 +34,6 @@
                 </svg>
                 Rechercher
             </button>
-            <a class="btn secondary" href="{{ route('announcements.index') }}">Effacer</a>
         </div>
     </form>
 

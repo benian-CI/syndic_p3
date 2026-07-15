@@ -26,8 +26,7 @@ class ContributionController extends Controller
                             });
                     });
                 })
-                ->when(request('date_debut'), fn ($query, $date) => $query->whereDate('month', '>=', $date))
-                ->when(request('date_fin'), fn ($query, $date) => $query->whereDate('month', '<=', $date))
+                ->when(request('mois'), fn ($query, $mois) => $query->whereDate('month', $mois . '-01'))
                 ->when(request('paiement_debut'), fn ($query, $date) => $query->whereDate('paid_at', '>=', $date))
                 ->when(request('paiement_fin'), fn ($query, $date) => $query->whereDate('paid_at', '<=', $date))
                 ->latest('month')

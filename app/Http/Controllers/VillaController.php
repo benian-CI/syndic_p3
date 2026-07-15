@@ -22,8 +22,6 @@ class VillaController extends Controller
                             ->orWhereHas('street', fn ($streetQuery) => $streetQuery->where('name', 'like', '%' . $term . '%'));
                     });
                 })
-                ->when(request('date_debut'), fn ($query, $date) => $query->whereDate('created_at', '>=', $date))
-                ->when(request('date_fin'), fn ($query, $date) => $query->whereDate('created_at', '<=', $date))
                 ->latest()
                 ->paginate(15)
                 ->withQueryString(),

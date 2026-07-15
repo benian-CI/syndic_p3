@@ -1,6 +1,6 @@
 <x-modal title="Modifier une cotisation" subtitle="Modifie les informations de cette cotisation." back="{{ route('contributions.index') }}">
     <x-slot:icon>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8l-4 4-4-4"/><path d="M12 16V8"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8l-4 4-4-4"/><path d="M12 16V8"/></svg>
     </x-slot:icon>
 
     <form method="POST" action="{{ route('contributions.update', $contribution) }}" data-turbo-frame="_top">

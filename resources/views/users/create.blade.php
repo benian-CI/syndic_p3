@@ -1,6 +1,6 @@
 <x-modal title="Ajouter un utilisateur" subtitle="Crée un compte utilisateur avec un rôle d'accès." back="{{ route('users.index') }}">
     <x-slot:icon>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </x-slot:icon>
 
     <form method="POST" action="{{ route('users.store') }}" data-turbo-frame="_top">

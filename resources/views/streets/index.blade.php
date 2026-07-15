@@ -21,12 +21,6 @@
         <label>Nom de la rue
             <input name="q" value="{{ request('q') }}" placeholder="Ex : Palmiers">
         </label>
-        <label>Créée depuis
-            <input type="date" name="date_debut" value="{{ request('date_debut') }}">
-        </label>
-        <label>Date fin
-            <input type="date" name="date_fin" value="{{ request('date_fin') }}">
-        </label>
         <div class="filter-actions">
             <button class="btn" type="submit">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -34,7 +28,6 @@
                 </svg>
                 Rechercher
             </button>
-            <a class="btn secondary" href="{{ route('streets.index') }}">Effacer</a>
         </div>
     </form>
 

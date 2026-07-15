@@ -1,6 +1,6 @@
 <x-modal title="Modifier une rue" subtitle="Modifie le nom ou la description de la rue." back="{{ route('streets.index') }}">
     <x-slot:icon>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 .553-.894L9 2l5.447 2.724A1 1 0 0 1 15 5.618v10.764a1 1 0 0 1-.553.894L9 20z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 .553-.894L9 2l5.447 2.724A1 1 0 0 1 15 5.618v10.764a1 1 0 0 1-.553.894L9 20z"/></svg>
     </x-slot:icon>
 
     <form method="POST" action="{{ route('streets.update', $street) }}" data-turbo-frame="_top">

@@ -1,6 +1,6 @@
 <x-modal title="Modifier un utilisateur" subtitle="Modifie les informations ou le rôle de cet utilisateur." back="{{ route('users.index') }}">
     <x-slot:icon>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </x-slot:icon>
 
     <form method="POST" action="{{ route('users.update', $user) }}" data-turbo-frame="_top">

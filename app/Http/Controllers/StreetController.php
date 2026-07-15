@@ -12,8 +12,6 @@ class StreetController extends Controller
         return view('streets.index', [
             'streets' => Street::withCount('villas')
                 ->when(request('q'), fn ($query, $term) => $query->where('name', 'like', '%' . $term . '%'))
-                ->when(request('date_debut'), fn ($query, $date) => $query->whereDate('created_at', '>=', $date))
-                ->when(request('date_fin'), fn ($query, $date) => $query->whereDate('created_at', '<=', $date))
                 ->latest()
                 ->paginate(15)
                 ->withQueryString(),

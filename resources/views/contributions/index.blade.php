@@ -21,16 +21,13 @@
         <label>Recherche
             <input name="q" value="{{ request('q') }}" placeholder="Villa, propriétaire, rue, méthode, référence">
         </label>
-        <label>Mois début
-            <input type="date" name="date_debut" value="{{ request('date_debut') }}">
+        <label>Mois
+            <input type="month" name="mois" value="{{ request('mois') }}">
         </label>
-        <label>Mois fin
-            <input type="date" name="date_fin" value="{{ request('date_fin') }}">
-        </label>
-        <label>Paiement début
+        <label>Paiement du
             <input type="date" name="paiement_debut" value="{{ request('paiement_debut') }}">
         </label>
-        <label>Paiement fin
+        <label>au
             <input type="date" name="paiement_fin" value="{{ request('paiement_fin') }}">
         </label>
         <div class="filter-actions">
@@ -40,7 +37,6 @@
                 </svg>
                 Rechercher
             </button>
-            <a class="btn secondary" href="{{ route('contributions.index') }}">Effacer</a>
         </div>
     </form>
 

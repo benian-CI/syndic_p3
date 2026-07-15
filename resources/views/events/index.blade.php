@@ -33,7 +33,6 @@
                 </svg>
                 Rechercher
             </button>
-            <a class="btn secondary" href="{{ route('events.index') }}">Effacer</a>
         </div>
     </form>
 

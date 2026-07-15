@@ -34,7 +34,6 @@
                 </svg>
                 Rechercher
             </button>
-            <a class="btn secondary" href="{{ route('expenses.index') }}">Effacer</a>
         </div>
     </form>
 

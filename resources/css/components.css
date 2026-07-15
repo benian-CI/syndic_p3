@@ -355,7 +355,8 @@ tbody tr:last-child td {
    ============================================================ */
 .form-grid {
     display: grid;
-    gap: var(--space-5);
+    row-gap: var(--space-6);
+    column-gap: var(--space-5);
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -364,7 +365,7 @@ label {
     display: grid;
     font-size: var(--text-sm);
     font-weight: var(--weight-semibold);
-    gap: var(--space-2);
+    gap: var(--space-3);
 }
 
 input,
@@ -376,7 +377,7 @@ textarea {
     color: var(--text);
     font-family: inherit;
     font-size: var(--text-sm);
-    padding: 10px 12px;
+    padding: 11px 14px;
     width: 100%;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     line-height: 1.5;
@@ -646,21 +647,109 @@ input[type="checkbox"] {
    ============================================================ */
 .login-page {
     display: flex;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.login-side {
+    flex: 1 1 45%;
+    max-width: 560px;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(160deg, var(--primary), var(--primary-dark));
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: var(--space-5);
-    background: var(--bg);
+    gap: var(--space-5);
+    position: relative;
+    padding: var(--space-8);
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+}
+
+.login-side-tic-logo {
+    width: min(70%, 380px);
+    height: auto;
+}
+
+.login-side-tagline {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-sm);
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+}
+
+.login-main-inner {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+.login-brand-logo {
+    width: 60px;
+    height: auto;
+    margin-bottom: var(--space-2);
+}
+
+.login-brand-name {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--primary);
+    letter-spacing: -0.3px;
+}
+
+.login-brand-sub {
+    font-size: var(--text-sm);
+    color: var(--muted);
 }
 
 .login-card {
     width: 100%;
-    max-width: 400px;
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     padding: var(--space-8);
     box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 900px) {
+    .login-page {
+        flex-direction: column;
+    }
+
+    .login-side {
+        max-width: none;
+        flex: 0 0 auto;
+        padding: var(--space-6);
+        clip-path: none;
+    }
+
+    .login-side-tic-logo {
+        width: min(60%, 240px);
+    }
+
+    .login-main {
+        padding: var(--space-5);
+    }
 }
 
 /* ============================================================

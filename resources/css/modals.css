@@ -135,33 +135,6 @@ html.dark .modal-backdrop {
 }
 
 
-.login-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: var(--space-6);
-    text-align: center;
-    gap: var(--space-2);
-}
-
-.login-brand-logo {
-    width: 96px;
-    height: auto;
-    margin-bottom: var(--space-2);
-}
-
-.login-brand-name {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-extrabold);
-    color: var(--text);
-    letter-spacing: -0.3px;
-}
-
-.login-brand-sub {
-    font-size: var(--text-sm);
-    color: var(--muted);
-}
-
 .login-title {
     font-size: var(--text-lg);
     font-weight: var(--weight-bold);

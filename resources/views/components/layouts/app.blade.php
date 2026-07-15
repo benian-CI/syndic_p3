@@ -24,7 +24,7 @@
     <style>
         .turbo-progress-bar {
             height: 3px;
-            background-color: #0d9488;
+            background-color: #1b4da3;
         }
         html.turbo-loading main {
             opacity: 0.5;
@@ -51,10 +51,8 @@
     <div class="shell">
         <aside>
             <div class="brand-row">
-                 <div class="login-brand-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11l2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/>
-                    </svg>
+                <div class="sidebar-brand-icon">
+                    <img src="{{ asset('assets/logo-mark.png') }}" alt="Syndic P3 Rive Gauche">
                 </div>
                 <div>
                     <div class="brand">SYNDIC P3 RIVE GAUCHE</div>
@@ -113,8 +111,10 @@
                 </a>
                 <a class="{{ request()->routeIs('expenses.*') ? 'active' : '' }}" href="{{ route('expenses.index') }}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        <rect x="2" y="6" width="20" height="12" rx="2" ry="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <line x1="6" y1="12" x2="6.01" y2="12"/>
+                        <line x1="18" y1="12" x2="18.01" y2="12"/>
                     </svg>
                     Dépenses
                 </a>

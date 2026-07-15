@@ -112,6 +112,7 @@ class DatabaseSeeder extends Seeder
 
         Announcement::create([
             'title' => 'Rappel cotisation mensuelle',
+            'destinataire' => 'Tous les proprietaires',
             'message' => 'Bonjour, merci de regler la cotisation du mois avant le 10.',
             'channel' => 'whatsapp',
             'target' => 'all',
@@ -120,6 +121,7 @@ class DatabaseSeeder extends Seeder
 
         Announcement::create([
             'title' => 'Journee de nettoyage',
+            'destinataire' => 'Tous les proprietaires',
             'message' => 'Une journee de nettoyage est prevue samedi matin. Merci pour votre participation.',
             'channel' => 'email',
             'target' => 'all',

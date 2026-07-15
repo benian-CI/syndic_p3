@@ -147,7 +147,7 @@ function initCharts(data) {
                 labels: ['Cotisations', 'Dépenses'],
                 datasets: [{
                     data: [data.contributionsThisMonth, data.expensesThisMonth],
-                    backgroundColor: ['#0f766e', '#dc2626'],
+                    backgroundColor: ['#1b4da3', '#dc2626'],
                     borderColor: '#ffffff',
                     borderWidth: 3,
                     hoverOffset: 6,
@@ -185,7 +185,7 @@ function initCharts(data) {
                     {
                         label: 'Cotisations',
                         data: monthlyContributions,
-                        backgroundColor: 'rgba(15, 118, 110, 0.85)',
+                        backgroundColor: 'rgba(27, 77, 163, 0.85)',
                         borderRadius: 5,
                         borderSkipped: false,
                     },

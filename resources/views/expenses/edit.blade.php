@@ -1,40 +1,22 @@
-<x-layouts.app title="Modifier une dépense">
-    <turbo-frame id="modal">
-        <div class="modal-backdrop">
-            <div class="modal-container">
-                <button type="button" class="modal-close" onclick="document.getElementById('modal').innerHTML=''">&times;</button>
-    <div class="topbar">
-        <div class="topbar-left">
-            <nav class="breadcrumb" aria-label="Fil d'Ariane">
-                <a href="{{ route('expenses.index') }}">Dépenses</a>
-                <span class="breadcrumb-sep" aria-hidden="true">/</span>
-                <span class="breadcrumb-current">Modifier</span>
-            </nav>
-            <h1>Modifier une dépense</h1>
-        </div>
-        <a class="btn secondary" href="{{ route('expenses.index') }}">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-            </svg>
-            Retour
-        </a>
-    </div>
-    <section class="panel">
-        <form method="POST" action="{{ route('expenses.update', $expense) }}" class="form-grid" data-turbo-frame="_top">
-            @csrf @method('PUT')
+<x-modal title="Modifier une dépense" subtitle="Modifie les informations de cette dépense." back="{{ route('expenses.index') }}">
+    <x-slot:icon>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2" ry="2"/><circle cx="12" cy="12" r="2"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/></svg>
+    </x-slot:icon>
+
+    <form method="POST" action="{{ route('expenses.update', $expense) }}" data-turbo-frame="_top">
+        @csrf @method('PUT')
+        <div class="modal-body form-grid">
             @include('expenses.form')
-            <div class="full">
-                <button class="btn" type="submit">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                        <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
-                    </svg>
-                    Mettre à jour
-                </button>
-            </div>
-        </form>
-    </section>
-            </div>
         </div>
-    </turbo-frame>
-</x-layouts.app>
+        <div class="modal-foot">
+            <a href="{{ route('expenses.index') }}" class="btn secondary">Annuler</a>
+            <button class="btn" type="submit">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                    <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+                </svg>
+                Mettre à jour
+            </button>
+        </div>
+    </form>
+</x-modal>

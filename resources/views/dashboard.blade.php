@@ -18,8 +18,10 @@
         <div class="card">
             <div class="card-icon icon-expense">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <line x1="6" y1="12" x2="6.01" y2="12" />
+                    <line x1="18" y1="12" x2="18.01" y2="12" />
                 </svg>
             </div>
             <div class="stat-label">Total des dépenses</div>
@@ -89,8 +91,10 @@
         <div class="card">
             <div class="card-icon icon-month">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <line x1="6" y1="12" x2="6.01" y2="12" />
+                    <line x1="18" y1="12" x2="18.01" y2="12" />
                 </svg>
             </div>
             <div class="stat-label">Dépenses Mensuelles</div>
@@ -99,8 +103,10 @@
         <div class="card">
             <div class="card-icon icon-year">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <line x1="6" y1="12" x2="6.01" y2="12" />
+                    <line x1="18" y1="12" x2="18.01" y2="12" />
                 </svg>
             </div>
             <div class="stat-label">Dépenses Annuelles en cours</div>
@@ -195,10 +201,12 @@
                             <tr class="empty-row">
                                 <td colspan="3">
                                     <div class="empty-state">
-                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="1.5">
-                                            <line x1="12" y1="1" x2="12" y2="23" />
-                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                            <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                                            <circle cx="12" cy="12" r="2" />
+                                            <line x1="6" y1="12" x2="6.01" y2="12" />
+                                            <line x1="18" y1="12" x2="18.01" y2="12" />
                                         </svg>
                                         <p>Aucune dépense enregistrée.</p>
                                     </div>

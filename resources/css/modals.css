@@ -31,26 +31,94 @@ html.dark .modal-backdrop {
     overflow-y: auto;
     background: var(--panel);
     border-radius: var(--radius-xl);
-    padding: var(--space-8);
     box-shadow: var(--shadow-lg);
     animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.modal-close {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-5);
-    background: transparent;
-    border: none;
+@media (prefers-reduced-motion: reduce) {
+    .modal-container { animation: none; }
+}
+
+/* ---------- Professional modal header ---------- */
+.modal-head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-8) var(--space-5);
+    border-bottom: 1px solid var(--line);
+}
+
+.modal-head .modal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(155deg, color-mix(in srgb, var(--primary) 88%, black 4%), var(--primary-dark));
+    color: #fff;
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+.modal-head .modal-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.modal-titles {
+    flex: 1;
+    min-width: 0;
+    padding-top: 2px;
+}
+
+.modal-titles h1 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+}
+
+.modal-titles p {
+    margin: 4px 0 0;
+    font-size: var(--text-sm);
     color: var(--muted);
-    font-size: 24px;
-    line-height: 1;
+}
+
+.modal-body {
+    padding: var(--space-6) var(--space-8) 0;
+}
+
+.modal-foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-8) var(--space-8);
+    margin-top: var(--space-6);
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: color var(--transition-fast);
+    flex-shrink: 0;
+    transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.modal-close svg {
+    width: 15px;
+    height: 15px;
 }
 
 .modal-close:hover {
+    background: var(--icon-red-bg);
     color: var(--danger);
+    border-color: transparent;
 }
 
 @keyframes fadeIn {
@@ -73,15 +141,9 @@ html.dark .modal-backdrop {
     gap: var(--space-2);
 }
 
-.login-brand-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--primary);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+.login-brand-logo {
+    width: 96px;
+    height: auto;
     margin-bottom: var(--space-2);
 }
 

@@ -11,11 +11,7 @@
     <div class="login-page">
         <div class="login-card">
             <div class="login-brand">
-                <div class="login-brand-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11l2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/>
-                    </svg>
-                </div>
+                <img src="{{ asset('assets/logo-mark.png') }}" alt="Syndic P3 Rive Gauche" class="login-brand-logo">
                 <div class="login-brand-name">SYNDIC P3 RIVE GAUCHE</div>
                 <div class="login-brand-sub">Syndic Management</div>
             </div>

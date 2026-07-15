@@ -33,6 +33,7 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         Expense::create($this->validated($request));
+        DashboardController::clearCache();
 
         return redirect()->route('expenses.index')->with('success', 'Depense ajoutee.');
     }
@@ -45,6 +46,7 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $expense->update($this->validated($request));
+        DashboardController::clearCache();
 
         return redirect()->route('expenses.index')->with('success', 'Depense modifiee.');
     }
@@ -52,6 +54,7 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         $expense->delete();
+        DashboardController::clearCache();
 
         return redirect()->route('expenses.index')->with('success', 'Depense supprimee.');
     }

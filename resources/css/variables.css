@@ -3,19 +3,19 @@
    ============================================================ */
 :root {
     color-scheme: light;
-    --bg: #f8fafc;
-    --text: #0f172a;
-    --muted: #64748b;
-    --line: #e2e8f0;
-    --primary: #0d9488;
-    --primary-dark: #0f766e;
+    --bg: #f5f8fc;
+    --text: #101e33;
+    --muted: #57708f;
+    --line: #dce6f3;
+    --primary: #1b4da3;
+    --primary-dark: #123b7d;
     --panel: #ffffff;
     --danger: #ef4444;
 
     /* Sidebar */
-    --sidebar-bg: #0b1220;
+    --sidebar-bg: #0a1830;
     --sidebar-text: #eef4ff;
-    --sidebar-link: #cbd5e1;
+    --sidebar-link: #a9bcdd;
     --sidebar-hover: rgba(255, 255, 255, 0.1);
 
     /* Statuts */
@@ -80,18 +80,18 @@
 
 html.dark {
     color-scheme: dark;
-    --bg: #090e17;
-    --text: #f8fafc;
-    --muted: #94a3b8;
+    --bg: #060c18;
+    --text: #eaf1fc;
+    --muted: #8ca2c2;
     --line: rgba(255, 255, 255, 0.08);
-    --primary: #2dd4bf;
-    --primary-dark: #14b8a6;
-    --panel: rgba(30, 41, 59, 0.7);
+    --primary: #4c8dff;
+    --primary-dark: #2f6fe0;
+    --panel: rgba(19, 33, 56, 0.7);
     --danger: #f87171;
 
-    --sidebar-bg: #090e17;
-    --sidebar-text: #f8fafc;
-    --sidebar-link: #94a3b8;
+    --sidebar-bg: #060c18;
+    --sidebar-text: #eaf1fc;
+    --sidebar-link: #8ca2c2;
     --sidebar-hover: rgba(255, 255, 255, 0.08);
 
     --error-bg: rgba(153, 27, 27, 0.2);

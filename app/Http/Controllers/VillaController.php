@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Street;
 use App\Models\Villa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class VillaController extends Controller
 {
@@ -67,7 +66,7 @@ class VillaController extends Controller
 
     private function streets()
     {
-        return Cache::remember('streets_list', 600, fn () => Street::orderBy('name')->get());
+        return Street::orderBy('name')->get(['id', 'name']);
     }
 
     private function validated(Request $request): array

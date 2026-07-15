@@ -44,10 +44,11 @@ npm run build
    - `SESSION_SECURE_COOKIE=true`
    - `SESSION_HTTP_ONLY=true`
    - `SESSION_SAME_SITE=lax`
-4. Installe les dépendances sans les paquets de développement :
+4. Installe les dépendances et compile les assets (CSS/JS) :
 ```bash
 composer install --no-dev --optimize-autoloader
-npm ci --omit=dev
+npm ci
+npm run build
 ```
 5. Exécute les commandes Laravel :
 ```bash
@@ -56,6 +57,8 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 ```
+
+⚠️ **Important** : `public/build/` est ignoré par git (voir `.gitignore`). À chaque déploiement d'une nouvelle version, il faut refaire `npm run build` sur le serveur, sinon Plesk continue de servir l'ancien CSS/JS déjà présent — même si le code source (`resources/`) a bien été mis à jour. Si la page semble "cassée" ou affiche un ancien design après un déploiement, c'est presque toujours ça : relance `npm run build` puis vide le cache du navigateur.
 
 ## Notes de sécurité
 - `APP_DEBUG` doit être `false` en production.

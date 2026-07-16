@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Gestion Quartier' }}</title>
+    <title>{{ $title ?? 'Syndic P3' }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo-mark.png') }}">
     @php
         $appCss = Vite::asset('resources/css/app.css');
         $appJs = Vite::asset('resources/js/app.js');

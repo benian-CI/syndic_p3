@@ -689,7 +689,7 @@ input[type="checkbox"] {
 
 .login-main-inner {
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -727,7 +727,7 @@ input[type="checkbox"] {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
-    padding: var(--space-8);
+    padding: var(--space-6);
     box-shadow: var(--shadow-lg);
 }
 

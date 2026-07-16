@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Connexion — Gestion Quartier</title>
+    <title>Syndic P3</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo-mark.png') }}">
     @vite(['resources/css/app.css'])
 </head>
 <body>

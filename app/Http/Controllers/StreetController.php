@@ -28,6 +28,8 @@ class StreetController extends Controller
         Street::create($request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'latitude' => ['nullable', 'numeric', 'between:-90,90'],
+            'longitude' => ['nullable', 'numeric', 'between:-180,180'],
         ]));
 
         return redirect()->route('streets.index')->with('success', 'Rue ajoutee.');
@@ -43,6 +45,8 @@ class StreetController extends Controller
         $street->update($request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'latitude' => ['nullable', 'numeric', 'between:-90,90'],
+            'longitude' => ['nullable', 'numeric', 'between:-180,180'],
         ]));
 
         return redirect()->route('streets.index')->with('success', 'Rue modifiee.');

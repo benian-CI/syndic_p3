@@ -1,11 +1,30 @@
 import * as Turbo from '@hotwired/turbo';
 import Chart from 'chart.js/auto';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 Turbo.start();
+
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: markerIcon2x,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+});
+
+const DEFAULT_MAP_CENTER = [5.3364, -4.0267]; // Abidjan, Rive Gauche
 
 const charts = {
     monthly: null,
     annual: null,
+};
+
+const maps = {
+    picker: null,
+    overview: null,
 };
 
 function closeModal() {
@@ -228,6 +247,168 @@ function initCharts(data) {
     }
 }
 
+function initStreetMapPicker() {
+    maps.picker?.remove();
+    maps.picker = null;
+
+    const container = document.getElementById('street-map-picker');
+    if (!container) {
+        return;
+    }
+
+    const latInput = document.getElementById('street-latitude');
+    const lngInput = document.getElementById('street-longitude');
+    const existingLat = parseFloat(container.dataset.lat);
+    const existingLng = parseFloat(container.dataset.lng);
+    const hasExisting = !Number.isNaN(existingLat) && !Number.isNaN(existingLng);
+    const center = hasExisting ? [existingLat, existingLng] : DEFAULT_MAP_CENTER;
+
+    const map = L.map(container).setView(center, hasExisting ? 16 : 13);
+    maps.picker = map;
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 19,
+    }).addTo(map);
+
+    let marker = hasExisting ? L.marker(center, { draggable: true }).addTo(map) : null;
+
+    function setPosition(latlng) {
+        if (!marker) {
+            marker = L.marker(latlng, { draggable: true }).addTo(map);
+            marker.on('dragend', () => setPosition(marker.getLatLng()));
+        } else {
+            marker.setLatLng(latlng);
+        }
+        latInput.value = latlng.lat.toFixed(7);
+        lngInput.value = latlng.lng.toFixed(7);
+    }
+
+    if (marker) {
+        marker.on('dragend', () => setPosition(marker.getLatLng()));
+    }
+
+    map.on('click', (event) => setPosition(event.latlng));
+
+    initMapSearch(map, setPosition);
+
+    setTimeout(() => map.invalidateSize(), 100);
+}
+
+function initMapSearch(map, setPosition) {
+    const searchInput = document.getElementById('street-map-search');
+    const resultsBox = document.getElementById('street-map-search-results');
+    if (!searchInput || !resultsBox) {
+        return;
+    }
+
+    let debounceTimer = null;
+    let currentController = null;
+
+    function hideResults() {
+        resultsBox.innerHTML = '';
+        resultsBox.classList.remove('open');
+    }
+
+    function selectResult(result) {
+        const latlng = { lat: parseFloat(result.lat), lng: parseFloat(result.lon) };
+        map.setView(latlng, 17);
+        setPosition(latlng);
+        searchInput.value = result.display_name;
+        hideResults();
+    }
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+        clearTimeout(debounceTimer);
+
+        if (query.length < 3) {
+            hideResults();
+            return;
+        }
+
+        debounceTimer = setTimeout(async () => {
+            currentController?.abort();
+            currentController = new AbortController();
+
+            try {
+                const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=5&q='
+                    + encodeURIComponent(query + ', Abidjan, Côte d\'Ivoire');
+                const response = await fetch(url, { signal: currentController.signal });
+                const results = await response.json();
+
+                if (!results.length) {
+                    resultsBox.innerHTML = '<div class="map-search-empty">Aucun résultat trouvé.</div>';
+                    resultsBox.classList.add('open');
+                    return;
+                }
+
+                resultsBox.innerHTML = '';
+                results.forEach((result) => {
+                    const item = document.createElement('button');
+                    item.type = 'button';
+                    item.className = 'map-search-item';
+                    item.textContent = result.display_name;
+                    item.addEventListener('click', () => selectResult(result));
+                    resultsBox.appendChild(item);
+                });
+                resultsBox.classList.add('open');
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    hideResults();
+                }
+            }
+        }, 400);
+    });
+
+    if (!document.documentElement.dataset.mapSearchOutsideClickBound) {
+        document.documentElement.dataset.mapSearchOutsideClickBound = '1';
+        document.addEventListener('click', (event) => {
+            const box = document.getElementById('street-map-search-results');
+            const input = document.getElementById('street-map-search');
+            if (box && input && !box.contains(event.target) && event.target !== input) {
+                box.innerHTML = '';
+                box.classList.remove('open');
+            }
+        });
+    }
+}
+
+function initOverviewMap() {
+    maps.overview?.remove();
+    maps.overview = null;
+
+    const container = document.getElementById('overview-map');
+    if (!container) {
+        return;
+    }
+
+    const streets = window.__mapStreets ?? [];
+    const points = streets.filter((s) => s.latitude !== null && s.longitude !== null);
+
+    const map = L.map(container).setView(DEFAULT_MAP_CENTER, 13);
+    maps.overview = map;
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 19,
+    }).addTo(map);
+
+    const markers = [];
+    points.forEach((street) => {
+        const marker = L.marker([street.latitude, street.longitude]).addTo(map);
+        marker.bindPopup(`<strong>${street.name}</strong><br>${street.villasCount} villa(s)`);
+        markers.push(marker);
+    });
+
+    if (markers.length) {
+        const group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds().pad(0.2));
+    }
+
+    setTimeout(() => map.invalidateSize(), 100);
+}
+
 function setupGlobalListeners() {
     if (document.documentElement.dataset.appGlobalsBound) {
         return;
@@ -248,6 +429,8 @@ function initApp() {
     initSidebar();
     initDeleteConfirm();
     initCharts(window.__dashboardData);
+    initStreetMapPicker();
+    initOverviewMap();
 }
 
 setupGlobalListeners();

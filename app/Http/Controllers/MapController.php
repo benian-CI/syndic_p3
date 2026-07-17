@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Villa;
+use App\Models\Street;
 
 class MapController extends Controller
 {
     public function index()
     {
         return view('map.index', [
-            'villas' => Villa::with('street')
+            'streets' => Street::withCount('villas')
                 ->whereNotNull('latitude')
                 ->whereNotNull('longitude')
-                ->orderBy('number')
+                ->orderBy('name')
                 ->get(),
         ]);
     }

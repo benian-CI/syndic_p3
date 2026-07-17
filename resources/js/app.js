@@ -247,17 +247,17 @@ function initCharts(data) {
     }
 }
 
-function initVillaMapPicker() {
+function initStreetMapPicker() {
     maps.picker?.remove();
     maps.picker = null;
 
-    const container = document.getElementById('villa-map-picker');
+    const container = document.getElementById('street-map-picker');
     if (!container) {
         return;
     }
 
-    const latInput = document.getElementById('villa-latitude');
-    const lngInput = document.getElementById('villa-longitude');
+    const latInput = document.getElementById('street-latitude');
+    const lngInput = document.getElementById('street-longitude');
     const existingLat = parseFloat(container.dataset.lat);
     const existingLng = parseFloat(container.dataset.lng);
     const hasExisting = !Number.isNaN(existingLat) && !Number.isNaN(existingLng);
@@ -296,8 +296,8 @@ function initVillaMapPicker() {
 }
 
 function initMapSearch(map, setPosition) {
-    const searchInput = document.getElementById('villa-map-search');
-    const resultsBox = document.getElementById('villa-map-search-results');
+    const searchInput = document.getElementById('street-map-search');
+    const resultsBox = document.getElementById('street-map-search-results');
     if (!searchInput || !resultsBox) {
         return;
     }
@@ -364,8 +364,8 @@ function initMapSearch(map, setPosition) {
     if (!document.documentElement.dataset.mapSearchOutsideClickBound) {
         document.documentElement.dataset.mapSearchOutsideClickBound = '1';
         document.addEventListener('click', (event) => {
-            const box = document.getElementById('villa-map-search-results');
-            const input = document.getElementById('villa-map-search');
+            const box = document.getElementById('street-map-search-results');
+            const input = document.getElementById('street-map-search');
             if (box && input && !box.contains(event.target) && event.target !== input) {
                 box.innerHTML = '';
                 box.classList.remove('open');
@@ -383,8 +383,8 @@ function initOverviewMap() {
         return;
     }
 
-    const villas = window.__mapVillas ?? [];
-    const points = villas.filter((v) => v.latitude !== null && v.longitude !== null);
+    const streets = window.__mapStreets ?? [];
+    const points = streets.filter((s) => s.latitude !== null && s.longitude !== null);
 
     const map = L.map(container).setView(DEFAULT_MAP_CENTER, 13);
     maps.overview = map;
@@ -395,9 +395,9 @@ function initOverviewMap() {
     }).addTo(map);
 
     const markers = [];
-    points.forEach((villa) => {
-        const marker = L.marker([villa.latitude, villa.longitude]).addTo(map);
-        marker.bindPopup(`<strong>Villa ${villa.number}</strong><br>${villa.ownerName}<br>${villa.streetName ?? ''}`);
+    points.forEach((street) => {
+        const marker = L.marker([street.latitude, street.longitude]).addTo(map);
+        marker.bindPopup(`<strong>${street.name}</strong><br>${street.villasCount} villa(s)`);
         markers.push(marker);
     });
 
@@ -429,7 +429,7 @@ function initApp() {
     initSidebar();
     initDeleteConfirm();
     initCharts(window.__dashboardData);
-    initVillaMapPicker();
+    initStreetMapPicker();
     initOverviewMap();
 }
 

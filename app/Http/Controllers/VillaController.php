@@ -76,6 +76,8 @@ class VillaController extends Controller
             'owner_email' => ['nullable', 'email', 'max:255'],
             'owner_phone' => ['nullable', 'string', 'max:40'],
             'notes' => ['nullable', 'string', 'max:255'],
+            'latitude' => ['nullable', 'numeric', 'between:-90,90'],
+            'longitude' => ['nullable', 'numeric', 'between:-180,180'],
         ]);
     }
 }

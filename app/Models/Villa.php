@@ -13,6 +13,8 @@ class Villa extends Model
         'owner_email',
         'owner_phone',
         'notes',
+        'latitude',
+        'longitude',
     ];
 
     public function street()

@@ -37,3 +37,16 @@
            placeholder="Remarques éventuelles">
     @error('notes')<span class="field-error">{{ $message }}</span>@enderror
 </label>
+<label class="full">Position sur la carte (optionnel)
+    <div class="map-search">
+        <input type="text" id="villa-map-search" autocomplete="off"
+               placeholder="Rechercher un lieu (ex : Cocody, Rive Gauche, Abidjan)">
+        <div id="villa-map-search-results" class="map-search-results"></div>
+    </div>
+    <div id="villa-map-picker" class="map-picker"
+         data-lat="{{ old('latitude', $villa->latitude ?? '') }}"
+         data-lng="{{ old('longitude', $villa->longitude ?? '') }}"></div>
+    <input type="hidden" name="latitude" id="villa-latitude" value="{{ old('latitude', $villa->latitude ?? '') }}">
+    <input type="hidden" name="longitude" id="villa-longitude" value="{{ old('longitude', $villa->longitude ?? '') }}">
+    <p class="map-picker-hint">Recherche un lieu ci-dessus ou clique directement sur la carte pour placer/ajuster le repère de la villa.</p>
+</label>

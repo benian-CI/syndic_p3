@@ -2,22 +2,18 @@
     <div class="topbar">
         <div class="topbar-left">
             <h1>Carte du quartier</h1>
-            <p class="muted">Localisation des rues du Programme 3 Rive Gauche.</p>
+            <p class="muted">Localisation des villas du Programme 3 Rive Gauche.</p>
         </div>
     </div>
 
     <section class="panel">
-        @php
-            $withCoordinates = $streets->filter(fn ($street) => $street->latitude !== null && $street->longitude !== null);
-        @endphp
-
-        @if ($withCoordinates->isEmpty())
+        @if ($villas->isEmpty())
             <div class="empty-state">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                 </svg>
-                <p>Aucune rue géolocalisée pour le moment. Ajoute un repère depuis le formulaire d'une rue.</p>
+                <p>Aucune villa géolocalisée pour le moment. Ajoute un repère depuis le formulaire d'une villa.</p>
             </div>
         @else
             <div id="overview-map" class="overview-map"></div>
@@ -25,16 +21,17 @@
     </section>
 
     @php
-        $mapStreetsData = $streets->map(function ($street) {
+        $mapVillasData = $villas->map(function ($villa) {
             return [
-                'name' => $street->name,
-                'villasCount' => $street->villas_count,
-                'latitude' => $street->latitude ? (float) $street->latitude : null,
-                'longitude' => $street->longitude ? (float) $street->longitude : null,
+                'number' => $villa->number,
+                'ownerName' => $villa->owner_name,
+                'streetName' => $villa->street?->name,
+                'latitude' => (float) $villa->latitude,
+                'longitude' => (float) $villa->longitude,
             ];
         })->values();
     @endphp
     <script>
-        window.__mapStreets = @json($mapStreetsData);
+        window.__mapVillas = @json($mapVillasData);
     </script>
 </x-layouts.app>

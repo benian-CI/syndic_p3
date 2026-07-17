@@ -32,6 +32,33 @@
             pointer-events: none;
             transition: opacity 0.2s ease;
         }
+        .page-loader {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+        html.dark .page-loader {
+            background: rgba(6, 12, 24, 0.4);
+        }
+        html.turbo-loading .page-loader {
+            display: flex;
+        }
+        .page-loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid color-mix(in srgb, var(--primary) 20%, transparent);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: page-loader-spin 0.7s linear infinite;
+        }
+        @keyframes page-loader-spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -195,6 +222,10 @@
             document.addEventListener("turbo:load", updateThemeText);
             updateThemeText();
         </script>
+
+        <div class="page-loader" aria-hidden="true">
+            <div class="page-loader-spinner"></div>
+        </div>
 
         <main>
             @if (session('success'))

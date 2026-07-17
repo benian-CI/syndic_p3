@@ -350,6 +350,11 @@ tbody tr:last-child td {
     color: var(--color-blue);
 }
 
+.badge-amber {
+    background: var(--icon-amber-bg);
+    color: var(--color-amber);
+}
+
 /* ============================================================
    FORMULAIRES
    ============================================================ */

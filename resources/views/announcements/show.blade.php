@@ -43,7 +43,19 @@
             </div>
             <div>
                 <div class="stat-label">Canal</div>
-                <span class="badge badge-blue">{{ ucfirst($announcement->channel) }}</span>
+                @php
+                    $channelBadge = match($announcement->channel) {
+                        'whatsapp' => 'badge-success',
+                        'phone' => 'badge-amber',
+                        default => 'badge-blue',
+                    };
+                    $channelLabel = match($announcement->channel) {
+                        'phone' => 'Téléphone',
+                        'whatsapp' => 'WhatsApp',
+                        default => 'Email',
+                    };
+                @endphp
+                <span class="badge {{ $channelBadge }}">{{ $channelLabel }}</span>
             </div>
             <div>
                 <div class="stat-label">Statut</div>

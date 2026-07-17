@@ -21,10 +21,10 @@
         <label>Recherche
             <input name="q" value="{{ request('q') }}" placeholder="Titre, destinataire, message, canal">
         </label>
-        <label>Date annonce début
+        <label>Date d'envoi, du
             <input type="date" name="date_debut" value="{{ request('date_debut') }}">
         </label>
-        <label>Date fin
+        <label>au
             <input type="date" name="date_fin" value="{{ request('date_fin') }}">
         </label>
         <div class="filter-actions">
@@ -61,7 +61,19 @@
                                     <div class="muted" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ $announcement->message }}</div>
                                 </td>
                                 <td>
-                                    <span class="badge badge-blue">{{ ucfirst($announcement->channel) }}</span>
+                                    @php
+                                        $channelBadge = match($announcement->channel) {
+                                            'whatsapp' => 'badge-success',
+                                            'phone' => 'badge-amber',
+                                            default => 'badge-blue',
+                                        };
+                                        $channelLabel = match($announcement->channel) {
+                                            'phone' => 'Téléphone',
+                                            'whatsapp' => 'WhatsApp',
+                                            default => 'Email',
+                                        };
+                                    @endphp
+                                    <span class="badge {{ $channelBadge }}">{{ $channelLabel }}</span>
                                 </td>
                                 <td class="muted">{{ $announcement->sent_at?->format('d/m/Y H:i') ?? '—' }}</td>
                                 <td class="muted">{{ $announcement->created_at->format('d/m/Y') }}</td>

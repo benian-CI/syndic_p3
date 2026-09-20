@@ -13,6 +13,8 @@
     <link rel="preload" href="{{ $appCss }}" as="style">
     <link rel="preload" href="{{ $appJs }}" as="script">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <script>window.__googleMapsKey = {!! json_encode((string) config('services.google_maps.key')) !!};</script>
+    <script>window.__quartier = {!! json_encode(['name' => \App\Support\Quartier::name(), 'center' => \App\Support\Quartier::center(), 'radiusKm' => \App\Support\Quartier::radiusKm()]) !!};</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script>
         document.addEventListener("turbo:visit", () => {
@@ -167,6 +169,14 @@
                     </svg>
                     Carte
                 </a>
+                @if (auth()->user()?->isAdmin())
+                    <a class="{{ request()->routeIs('partner-syndics.*') ? 'active' : '' }}" href="{{ route('partner-syndics.index') }}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/>
+                        </svg>
+                        Syndics partenaires
+                    </a>
+                @endif
                 @if (auth()->user()?->isAdmin())
                     <a class="{{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

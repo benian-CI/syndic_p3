@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\PartnerSyndicController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VillaController;
@@ -47,7 +48,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('announcements', AnnouncementController::class)->only(['show']);
 
+    Route::patch('carte/rayon', [MapController::class, 'updateRadius'])->name('map.radius')->middleware('admin');
     Route::resource('users', UserController::class)->except(['show'])->middleware('admin');
+    Route::resource('partner-syndics', PartnerSyndicController::class)->except(['show'])->middleware('admin');
     Route::get('exports/{resource}/{format}', ExportController::class)
         ->whereIn('resource', ['streets', 'villas', 'contributions', 'expenses', 'announcements'])
         ->whereIn('format', ['pdf', 'excel'])

@@ -8,11 +8,11 @@
     @vite(['resources/css/app.css'])
 </head>
 <body>
-     {{-- {{ Hash::make('password') }} --}}
     <div class="login-page">
-        <div class="login-side">
-            <img src="{{ asset('assets/tic-solution-logo-white.png') }}" alt="TIC Solution" class="login-side-tic-logo">
-            <p class="login-side-tagline">L'innovation au service de vos solutions</p>
+        <div class="login-side" style="--login-bg: url('{{ asset('assets/login-background.jpg') }}')">
+            <div class="login-side-brand">
+                <img src="{{ asset('assets/tic-solution-logo.png') }}" alt="TIC Solution" class="login-side-tic-logo">
+            </div>
         </div>
 
         <div class="login-main">
@@ -64,7 +64,7 @@
                     </form>
 
                     <div class="login-footer">
-                        &copy; {{ date('Y') }} Gestion Quartier
+                        &copy; {{ date('Y') }} Syndic P3 Rive Gauche
                     </div>
                 </div>
             </div>

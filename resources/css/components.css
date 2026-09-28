@@ -653,36 +653,35 @@ input[type="checkbox"] {
 .login-page {
     display: flex;
     min-height: 100vh;
-    background: #0a1830;
+    background: var(--bg);
 }
 
 .login-side {
     flex: 1 1 45%;
     max-width: 560px;
-    order: 2;
-    background: var(--login-bg) center / cover no-repeat;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(160deg, var(--primary), var(--primary-dark));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
     position: relative;
-    /* Bord gauche ondulé : bande ondulée répétée + reste plein */
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='120' viewBox='0 0 60 120'%3E%3Cpath d='M30 0Q60 30 30 60T30 120L60 120L60 0Z'/%3E%3C/svg%3E") left top / 60px 120px repeat-y,
-        linear-gradient(#000, #000) right top / calc(100% - 59px) 100% no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='120' viewBox='0 0 60 120'%3E%3Cpath d='M30 0Q60 30 30 60T30 120L60 120L60 0Z'/%3E%3C/svg%3E") left top / 60px 120px repeat-y,
-        linear-gradient(#000, #000) right top / calc(100% - 59px) 100% no-repeat;
-}
-
-.login-side-brand {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
-    padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(4px);
+    padding: var(--space-8);
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
 }
 
 .login-side-tic-logo {
-    display: block;
-    width: 72px;
+    width: min(70%, 380px);
     height: auto;
+}
+
+.login-side-tagline {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-sm);
+    letter-spacing: 0.3px;
+    text-align: center;
 }
 
 .login-main {
@@ -719,19 +718,19 @@ input[type="checkbox"] {
 .login-brand-name {
     font-size: var(--text-xl);
     font-weight: var(--weight-extrabold);
-    color: #ffffff;
+    color: var(--primary);
     letter-spacing: -0.3px;
 }
 
 .login-brand-sub {
     font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--muted);
 }
 
 .login-card {
     width: 100%;
-    background: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--panel);
+    border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     padding: var(--space-6);
     box-shadow: var(--shadow-lg);
@@ -745,10 +744,12 @@ input[type="checkbox"] {
     .login-side {
         max-width: none;
         flex: 0 0 auto;
-        order: 0;
-        min-height: 220px;
-        -webkit-mask: none;
-        mask: none;
+        padding: var(--space-6);
+        clip-path: none;
+    }
+
+    .login-side-tic-logo {
+        width: min(60%, 240px);
     }
 
     .login-main {
@@ -902,180 +903,4 @@ input[type="checkbox"] {
     .login-card {
         padding: var(--space-6);
     }
-}
-
-/* ============================================================
-   CARTES (Leaflet)
-   ============================================================ */
-.map-search {
-    position: relative;
-    margin-bottom: var(--space-2);
-}
-
-.map-search input {
-    font-weight: var(--weight-normal);
-}
-
-.map-search-results {
-    display: none;
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    right: 0;
-    z-index: 20;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    max-height: 220px;
-    overflow-y: auto;
-}
-
-.map-search-results.open {
-    display: block;
-}
-
-.map-search-item {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: var(--space-2) var(--space-3);
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--line);
-    font-size: var(--text-sm);
-    font-weight: var(--weight-normal);
-    color: var(--text);
-    cursor: pointer;
-}
-
-.map-search-item:last-child {
-    border-bottom: none;
-}
-
-.map-search-item:hover {
-    background: var(--bg);
-    color: var(--primary);
-}
-
-.map-search-empty {
-    padding: var(--space-3);
-    font-size: var(--text-sm);
-    color: var(--muted);
-}
-
-.map-picker {
-    width: 100%;
-    height: 260px;
-    border-radius: var(--radius-md);
-    border: 1px solid #cbd5e1;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.map-picker-hint {
-    margin-top: var(--space-2);
-    font-size: var(--text-xs);
-    color: var(--muted);
-    font-weight: var(--weight-normal);
-}
-
-.overview-map {
-    width: 100%;
-    height: 560px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-}
-
-.map-legend {
-    display: flex;
-    gap: var(--space-5);
-    margin-bottom: var(--space-3);
-    font-size: var(--text-sm);
-    color: var(--muted);
-}
-
-.map-legend-item {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-.map-legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: var(--radius-full);
-    display: inline-block;
-}
-
-.map-legend-dot-street {
-    background: var(--primary);
-}
-
-.map-legend-dot-partner {
-    background: #f59e0b;
-}
-
-.map-legend-dot-ok { background: #16a34a; }
-.map-legend-dot-mid { background: #f59e0b; }
-.map-legend-dot-low { background: #dc2626; }
-
-.map-month-form {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
-    color: var(--muted);
-}
-
-.map-month-form input {
-    width: auto;
-}
-
-.map-layer-control {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin: 10px;
-    padding: 6px 10px;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    font-size: var(--text-sm);
-    color: #1f2937;
-}
-
-.map-layer-control label {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-}
-
-.map-search gmp-place-autocomplete {
-    display: block;
-    width: 100%;
-}
-
-.map-summary {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-6);
-    margin-bottom: var(--space-4);
-}
-
-.map-summary > div {
-    display: flex;
-    flex-direction: column;
-}
-
-.map-summary-value {
-    font-size: var(--text-xl, 1.25rem);
-    font-weight: var(--weight-extrabold);
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-}
-
-.leaflet-popup-content-wrapper {
-    border-radius: var(--radius-md);
 }

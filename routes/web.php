@@ -8,8 +8,6 @@ use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\MapController;
-use App\Http\Controllers\PartnerSyndicController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VillaController;
@@ -32,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('announcements/{announcement}/pdf', [AnnouncementController::class, 'pdf'])->name('announcements.pdf');
     Route::get('bulletins', [BulletinController::class, 'index'])->name('bulletins.index');
     Route::get('arrears', [ArrearController::class, 'index'])->name('arrears.index');
-    Route::get('carte', [MapController::class, 'index'])->name('map.index');
     Route::resource('events', EventsController::class)->only(['index']);
 
     Route::middleware('role:admin,gestionnaire')->group(function () {
@@ -48,9 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('announcements', AnnouncementController::class)->only(['show']);
 
-    Route::patch('carte/rayon', [MapController::class, 'updateRadius'])->name('map.radius')->middleware('admin');
     Route::resource('users', UserController::class)->except(['show'])->middleware('admin');
-    Route::resource('partner-syndics', PartnerSyndicController::class)->except(['show'])->middleware('admin');
     Route::get('exports/{resource}/{format}', ExportController::class)
         ->whereIn('resource', ['streets', 'villas', 'contributions', 'expenses', 'announcements'])
         ->whereIn('format', ['pdf', 'excel'])
